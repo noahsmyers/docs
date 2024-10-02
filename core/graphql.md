@@ -912,21 +912,22 @@ services:
         decorates: api_platform.graphql.resolver.stage.write
 ```
 
-### Disabling Resolver Stages
+### Disabling system providers and processors
 
 If you need to, you can disable some stages done by the resolvers, for instance if you don't want your data to be validated.
 
-The following table lists the stages you can disable in your resource configuration.
+The following table lists the [system providers and processors](./events.md) you can disable in your resource configuration.
 
-| Attribute     | Type   | Default | Description                                                                         |
-|---------------|--------|---------|-------------------------------------------------------------------------------------|
-| `read`        | `bool` | `true`  | Enables or disables the reading of data                                             |
-| `deserialize` | `bool` | `true`  | Enables or disables the deserialization of data (mutation only)                     |
-| `validate`    | `bool` | `true`  | Enables or disables the validation of the denormalized data (mutation only)         |
-| `write`       | `bool` | `true`  | Enables or disables the writing of data into the persistence system (mutation only) |
-| `serialize`   | `bool` | `true`  | Enables or disables the serialization of data                                       |
+Attribute                  | Type   | Default | Description
+---------------------------|--------|---------|-------------
+`query_parameter_validate` | `bool` | `true`  | Enables or disables `QueryParameter`
+`read`                     | `bool` | `true`  | Enables or disables `ReadProvider`
+`deserialize`              | `bool` | `true`  | Enables or disables `DeserializeProvider`
+`validate`                 | `bool` | `true`  | Enables or disables `ValidateProcessor`
+`write`                    | `bool` | `true`  | Enables or disables `WriteProcessor`
+`serialize`                | `bool` | `true`  | Enables or disables `SerializeProcessor`
 
-A stage can be disabled at the operation level:
+A provider or processor can be disabled at the operation level:
 
 <code-selector>
 
