@@ -26,9 +26,14 @@ import { ENTRYPOINT } from "config/entrypoint";
 const getHeaders = () => localStorage.getItem("token") ? {
   Authorization: `Bearer ${localStorage.getItem("token")}`,
 } : {};
+
 const fetchHydra = (url, options = {}) =>
   baseFetchHydra(url, {
     ...options,
+    headers: {
+        ...options.headers, // Make sure to extend the headers
+        ...getHeaders(),
+    },
     headers: getHeaders,
   });
 const RedirectToLogin = () => {
